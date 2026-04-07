@@ -1,0 +1,171 @@
+
+/* ================= HERO ================= */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 120px 70px 100px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    gap: 60px;
+
+    background:
+        radial-gradient(circle at 30% 30%, rgba(111, 182, 255, 0.35), transparent 40%),
+        radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.15), transparent 35%),
+        linear-gradient(180deg, #0a1a2f 0%, #122f52 100%);
+
+    overflow: hidden;
+}
+
+/* динамични звездички */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: transparent;
+    pointer-events: none;
+    animation: moveStars 100s linear infinite;
+}
+
+.stars::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow:
+        100px 200px white, 300px 400px white, 500px 150px white,
+        700px 350px white, 900px 250px white, 1100px 100px white,
+        1300px 400px white, 1500px 50px white, 1700px 300px white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes moveStars {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.hero-text {
+    max-width: 550px;
+}
+
+.hero-text h1 {
+    font-size: 52px;
+    font-weight: 200;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.hero-text p {
+    font-size: 17px;
+    max-width: 500px;
+    line-height: 1.6;
+    color: #d7ebff;
+    margin-bottom: 40px;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 14px 38px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #6fb6ff, #9fd3ff);
+    color: #0a1a2f;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(111, 182, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(111, 182, 255, 0.6);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    max-height: 550px;
+}
+
+/* ================= COLLECTION ================= */
+
+.collection {
+    padding: 120px 70px;
+    background: #0f2747;
+    text-align: center;
+}
+
+.collection h2 {
+    font-size: 42px;
+    font-weight: 200;
+    margin-bottom: 70px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 40px 30px;
+    backdrop-filter: blur(6px);
+    transition: 0.4s ease;
+}
+
+.card span {
+    font-size: 42px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.card img {
+   width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card h3 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #cfe4ff;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
