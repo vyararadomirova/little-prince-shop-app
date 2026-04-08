@@ -1,1 +1,28 @@
-<p>details works!</p>
+<section class="details-page" *ngIf="product; else notFound">
+    <div class="stars"></div>
+
+    <div class="details-container">
+        <div class="details-image">
+            <img [src]="product.imageUrl" [alt]="product.name">
+        </div>
+
+        <div class="details-info">
+            <h1>{{ product.name }}</h1>
+            <p class="details-description">{{ product.description }}</p>
+            <div class="details-price">{{ product.price }} евро</div>
+
+            <div class="details-actions">
+                <button class="hero-btn">Добави в кошницата</button>
+                <button class="edit-btn">Редактирай</button>
+                <button class="delete-btn">Изтрий</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #notFound>
+    <div class="not-found">
+        <h2>Продуктът не е намерен</h2>
+        <a routerLink="/catalog">Обратно към каталога</a>
+    </div>
+</ng-template>
