@@ -1,4 +1,4 @@
-<section class="details-page" *ngIf="product; else notFound">
+<section class="details-page" *ngIf="product && !isLoading; else loadingOrNotFound">
     <div class="stars"></div>
 
     <div class="details-container">
@@ -9,6 +9,13 @@
         <div class="details-info">
             <h1>{{ product.name }}</h1>
             <p class="details-description">{{ product.description }}</p>
+            
+            <!-- ДОБАВИ ТОВА - за съдържанието -->
+            <div class="details-content">
+                <h3>За продукта:</h3>
+                <p>{{ product.content }}</p>
+            </div>
+            
             <div class="details-price">{{ product.price }} евро</div>
 
             <div class="details-actions">
@@ -20,9 +27,14 @@
     </div>
 </section>
 
-<ng-template #notFound>
-    <div class="not-found">
-        <h2>Продуктът не е намерен</h2>
+<ng-template #loadingOrNotFound>
+    <div class="not-found" *ngIf="!isLoading && errorMessage; else loading">
+        <h2>{{ errorMessage }}</h2>
         <a routerLink="/catalog">Обратно към каталога</a>
     </div>
+    <ng-template #loading>
+        <div class="loading">
+            <h2>Зареждане...</h2>
+        </div>
+    </ng-template>
 </ng-template>

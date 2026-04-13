@@ -1,0 +1,52 @@
+{
+    "b2f4a8b0-7b2a-4af3-91f7-1a6a8b17eac2": {
+        "title": "Buy groceries",
+        "completed": false,
+        "_id": "b2f4a8b0-7b2a-4af3-91f7-1a6a8b17eac2"
+    },
+    "c80fbd8d-2b37-4d60-a5cc-51c7a0c3b57e": {
+        "title": "Finish project report",
+        "completed": false,
+        "_id": "c80fbd8d-2b37-4d60-a5cc-51c7a0c3b57e"
+    },
+    "1e2e1b6e-5d8a-4e37-8d5f-8cde9a8bbf18": {
+        "title": "Call the electrician",
+        "completed": false,
+        "_id": "1e2e1b6e-5d8a-4e37-8d5f-8cde9a8bbf18"
+    },
+    "8c3bb37d-8121-4805-b46d-792be4c48f2d": {
+        "title": "Book flight tickets",
+        "completed": true,
+        "_id": "8c3bb37d-8121-4805-b46d-792be4c48f2d"
+    },
+    "f3e94e2a-65e4-4a26-b6d3-7b6bb2f19d24": {
+        "title": "Update website content",
+        "completed": false,
+        "_id": "f3e94e2a-65e4-4a26-b6d3-7b6bb2f19d24"
+    },
+    "d93e7e7c-9d90-4f2c-96ce-d8a8a5d4562e": {
+        "title": "Pay electricity bill",
+        "completed": false,
+        "_id": "d93e7e7c-9d90-4f2c-96ce-d8a8a5d4562e"
+    },
+    "a7cc87e1-7a28-4b4b-8ac8-9b20a236b9e1": {
+        "title": "Organize workshop materials",
+        "completed": false,
+        "_id": "a7cc87e1-7a28-4b4b-8ac8-9b20a236b9e1"
+    },
+    "62c3b5b8-3f0b-4a9c-8a5e-f1c29a2e9202": {
+        "title": "Team meeting preparation",
+        "completed": true,
+        "_id": "62c3b5b8-3f0b-4a9c-8a5e-f1c29a2e9202"
+    },
+    "d8f8a6a4-5d79-4d53-b3b9-2b12702c5209": {
+        "title": "Clean the office",
+        "completed": false,
+        "_id": "d8f8a6a4-5d79-4d53-b3b9-2b12702c5209"
+    },
+    "e45c24f6-bf3a-482c-86b4-97cc51792b5a": {
+        "title": "Prepare client presentation",
+        "completed": false,
+        "_id": "e45c24f6-bf3a-482c-86b4-97cc51792b5a"
+    }
+}

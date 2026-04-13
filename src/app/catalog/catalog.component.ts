@@ -1,36 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, NavigationEnd, Router } from '@angular/router';
+import { ProductService, Product } from '../services/product.service';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
-   standalone: true,
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
 })
-export class CatalogComponent {
-  products = [
-    {
-      id: 1,
-      name: 'Чаша „Малкият принц“',
-      description: 'Малка чаша за големи мечти и тихи вечери под звездите.',
-      price: '14.90',
-      imageUrl: 'assets/images/малкия-принц-чаша.jpg'
-    },
-    {
-      id: 2,
-      name: 'Тениска „Малка планета“',
-      description: 'Памучна тениска с илюстрация от света на Малкия принц.',
-      price: '19.90',
-      imageUrl: 'assets/images/0T-8.jpg'
-    },
-    {
-      id: 3,
-      name: 'Фигурка Малкия принц',
-      description: 'Малка фигурка от любимата приказка.',
-      price: '9.90',
-      imageUrl: 'assets/images/IMG_9116-1024x768.jpeg'
+export class CatalogComponent implements OnInit, OnDestroy {
+  products: Product[] = [];
+  isLoading: boolean = true;
+  errorMessage: string = '';
+  private routerSubscription: Subscription | null = null;
+
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private cdr: ChangeDetectorRef  
+  ) {}
+
+  ngOnInit() {
+    console.log('ngOnInit се извика');
+    this.loadProducts();
+    
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd && event.url === '/catalog'))
+      .subscribe(() => {
+        console.log('Навигация към каталог - презареждам!');
+        this.loadProducts();
+      });
+  }
+
+  ngOnDestroy() {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
     }
-  ];
+  }
+
+  loadProducts() {
+    console.log('loadProducts се извика');
+    console.log('Текущ брой продукти преди зареждане:', this.products.length);
+    
+    this.isLoading = true;
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = Array.isArray(data) ? data : Object.values(data);
+        this.isLoading = false;
+        this.cdr.detectChanges();  
+        console.log('Заредени продукти след трансформация:', this.products);
+        console.log('Брой продукти:', this.products.length);
+      },
+      error: (err) => {
+        console.error('Грешка при зареждане на продукти:', err);
+        this.errorMessage = 'Възникна грешка при зареждането на продуктите. Моля, опитайте по-късно.';
+        this.isLoading = false;
+        this.cdr.detectChanges();  
+      }
+    });
+  }
 }

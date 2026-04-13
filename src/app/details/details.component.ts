@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ProductService, Product } from '../services/product.service';
 
 @Component({
   selector: 'app-details',
@@ -10,18 +11,38 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   styleUrls: ['./details.component.css']  
 })
 export class DetailsComponent implements OnInit {  
-  product: any = null;
+  product: Product | null = null;
+  isLoading: boolean = true;
+  errorMessage: string = '';
 
-  products = [
-    { id: 1, name: 'Чаша „Малкият принц“', description: 'Малка чаша, вдъхновена от света на Малкия принц. Подходяща за топъл чай, кафе и тихи моменти под звездите. Понякога най-важните неща са тези, които не се виждат с очите.', price: '14.90', imageUrl: 'assets/images/малкия-принц-чаша.jpg' },
-    { id: 2, name: 'Тениска „Малка планета“', description: 'Памучна тениска с илюстрация от света на Малкия принц.', price: '19.90', imageUrl: 'assets/images/0T-8.jpg' },
-    { id: 3, name: 'Фигурка Малкия принц', description: 'Малка фигурка от любимата приказка.', price: '9.90', imageUrl: 'assets/images/IMG_9116-1024x768.jpeg' }
-  ];
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.products.find(p => p.id === id);
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.loadProduct(id);
+    }
+  }
+
+  loadProduct(id: string) {
+    this.isLoading = true;
+    this.productService.getProductById(id).subscribe({
+      next: (data) => {
+        this.product = data;
+        this.isLoading = false;
+        this.cdr.detectChanges();
+        console.log('Зареден продукт:', this.product);
+      },
+      error: (err) => {
+        console.error('Грешка при зареждане на продукт:', err);
+        this.errorMessage = 'Продуктът не беше намерен';
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      }
+    });
   }
 }
