@@ -1,40 +1,65 @@
- <section class="auth-page">
-
+<section class="auth-page">
     <div class="stars"></div>
 
     <div class="auth-card">
-
         <h2>Регистрация</h2>
         <p class="auth-subtitle">
             Създайте профил и открийте нови малки планети
         </p>
 
-        <form>
+        <form (ngSubmit)="onSubmit()">
+            <div class="input-group">
+                <label>Потребителско име</label>
+                <input 
+                    type="text" 
+                    [(ngModel)]="username" 
+                    name="username"
+                    placeholder="име"
+                    required>
+            </div>
 
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" placeholder="example@email.com">
+                <input 
+                    type="email" 
+                    [(ngModel)]="email" 
+                    name="email"
+                    placeholder="example@email.com"
+                    required>
             </div>
 
             <div class="input-group">
                 <label>Парола</label>
-                <input type="password" placeholder="••••••••">
+                <input 
+                    type="password" 
+                    [(ngModel)]="password" 
+                    name="password"
+                    placeholder="••••••••"
+                    required>
             </div>
 
             <div class="input-group">
                 <label>Повтори паролата</label>
-                <input type="password" placeholder="••••••••">
+                <input 
+                    type="password" 
+                    [(ngModel)]="confirmPassword" 
+                    name="confirmPassword"
+                    placeholder="••••••••"
+                    required>
             </div>
 
-            <button class="hero-btn auth-btn">Създай профил</button>
+            <div *ngIf="error" class="error-message">
+                {{ error }}
+            </div>
 
+            <button type="submit" class="hero-btn auth-btn" [disabled]="loading">
+                {{ loading ? 'Зареждане...' : 'Създай профил' }}
+            </button>
         </form>
 
         <p class="auth-switch">
             Вече имате профил?
             <a routerLink="/login">Вход</a>
         </p>
-
     </div>
-
 </section>
