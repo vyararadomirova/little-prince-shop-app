@@ -94,3 +94,13 @@
     color: #6fb6ff;
     text-decoration: none;
 }
+
+.error-message {
+    background: rgba(255, 92, 108, 0.2);
+    color: #ff5c6c;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+}
