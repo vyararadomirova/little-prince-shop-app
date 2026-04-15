@@ -59,50 +59,55 @@
 .details-actions {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
-.hero-btn {
+/* унифицирани бутони */
+
+.details-btn {
     display: inline-block;
-    padding: 14px 38px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #6fb6ff, #9fd3ff);
-    color: #0a1a2f;
-    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 30px rgba(111, 182, 255, 0.4);
-    transition: 0.3s ease;
+    text-decoration: none;
     border: none;
     cursor: pointer;
+    transition: 0.3s ease;
+    font-family: inherit;
 }
 
-.hero-btn:hover {
+/* основен бутон (Добави в кошницата) */
+.details-btn-primary {
+    background: linear-gradient(135deg, #6fb6ff, #9fd3ff);
+    color: #0a1a2f;
+    box-shadow: 0 10px 30px rgba(111, 182, 255, 0.4);
+}
+
+.details-btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(111, 182, 255, 0.6);
 }
 
-/* edit */
-
-.edit-btn {
-    padding: 12px 24px;
-    border-radius: 30px;
-    border: none;
-
-    background: rgba(255,255,255,0.1);
-    color: white;
-
-    cursor: pointer;
+/* вторичен бутон (Редактирай, Назад) */
+.details-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #cfe4ff;
 }
 
-/* delete */
+.details-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
+}
 
-.delete-btn {
-    padding: 12px 24px;
-    border-radius: 30px;
-    border: none;
-
+/* бутон за изтриване */
+.details-btn-danger {
     background: #ff5c6c;
     color: white;
+}
 
-    cursor: pointer;
+.details-btn-danger:hover {
+    background: #ff3b4d;
+    transform: translateY(-2px);
 }

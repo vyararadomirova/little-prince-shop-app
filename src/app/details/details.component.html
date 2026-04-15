@@ -1,39 +1,47 @@
-<section class="details-page" *ngIf="product && !isLoading; else loadingOrNotFound">
+<section class="details-page">
     <div class="stars"></div>
 
-    <div class="details-container">
-        <div class="details-image">
-            <img [src]="product.imageUrl" [alt]="product.name">
-        </div>
-
-        <div class="details-info">
-            <h1>{{ product.name }}</h1>
-            <p class="details-description">{{ product.description }}</p>
-            
-            <div class="details-content">
-                <h3>За продукта:</h3>
-                <p>{{ product.content }}</p>
+    @if (product && !isLoading) {
+        <div class="details-container">
+            <div class="details-image">
+                <img [src]="product.imageUrl" [alt]="product.name">
             </div>
-            
-            <div class="details-price">{{ product.price }} евро</div>
 
-            <div class="details-actions">
-                <button class="hero-btn">Добави в кошницата</button>
-                <button class="edit-btn">Редактирай</button>
-                <button class="delete-btn">Изтрий</button>
+            <div class="details-info">
+                <h1>{{ product.name }}</h1>
+                <p class="details-description">{{ product.description }}</p>
+                
+                <div class="details-content">
+                    <h3>За продукта:</h3>
+                    <p>{{ product.content }}</p>
+                </div>
+                
+                <div class="details-price">{{ product.price }} евро</div>
+<div class="details-actions">
+
+    @if (isLoggedIn && !isAdmin) {
+        <button class="details-btn details-btn-primary">Добави в кошницата</button>
+    }
+
+  
+    @if (isAdmin) {
+        <button class="details-btn details-btn-secondary">Редактирай</button>
+        <button class="details-btn details-btn-danger">Изтрий</button>
+    }
+
+    
+    <a routerLink="/catalog" class="details-btn details-btn-secondary">Обратно към каталога</a>
+</div>
             </div>
         </div>
-    </div>
-</section>
-
-<ng-template #loadingOrNotFound>
-    <div class="not-found" *ngIf="!isLoading && errorMessage; else loading">
-        <h2>{{ errorMessage }}</h2>
-        <a routerLink="/catalog">Обратно към каталога</a>
-    </div>
-    <ng-template #loading>
+    } @else if (!isLoading && errorMessage) {
+        <div class="not-found">
+            <h2>{{ errorMessage }}</h2>
+            <a routerLink="/catalog">Обратно към каталога</a>
+        </div>
+    } @else if (isLoading) {
         <div class="loading">
             <h2>Зареждане...</h2>
         </div>
-    </ng-template>
-</ng-template>
+    }
+</section>
