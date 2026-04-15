@@ -48,9 +48,11 @@
                     required>
             </div>
 
-            <div *ngIf="error" class="error-message">
-                {{ error }}
-            </div>
+            @if (error) {
+                <div class="error-message">
+                    {{ error }}
+                </div>
+            }
 
             <button type="submit" class="hero-btn auth-btn" [disabled]="loading">
                 {{ loading ? 'Зареждане...' : 'Създай профил' }}
