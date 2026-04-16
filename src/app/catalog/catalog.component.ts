@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './catalog.component.html',
-  styleUrl: './catalog.component.css',
+  styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit, OnDestroy {
   products: Product[] = [];
@@ -21,7 +21,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private cdr: ChangeDetectorRef  
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -49,17 +49,18 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.productService.getProducts().subscribe({
       next: (data) => {
+        console.log('Данни от сървъра:', data);
         this.products = Array.isArray(data) ? data : Object.values(data);
         this.isLoading = false;
-        this.cdr.detectChanges();  
-        console.log('Заредени продукти след трансформация:', this.products);
-        console.log('Брой продукти:', this.products.length);
+        this.cdr.detectChanges();
+        console.log('Заредени продукти:', this.products);
+        console.log('Първият продукт има _id:', this.products[0]?._id);
       },
       error: (err) => {
         console.error('Грешка при зареждане на продукти:', err);
         this.errorMessage = 'Възникна грешка при зареждането на продуктите. Моля, опитайте по-късно.';
         this.isLoading = false;
-        this.cdr.detectChanges();  
+        this.cdr.detectChanges();
       }
     });
   }

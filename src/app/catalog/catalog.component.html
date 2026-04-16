@@ -1,19 +1,27 @@
-<section class="catalog">
+<section class="page-container">
     <div class="stars"></div>
 
-    <h1 class="catalog-title">Колекция сувенири</h1>
+    <h1 class="form-title">Колекция сувенири</h1>
 
-    <div class="product-grid">
-        <div class="product-card" *ngFor="let product of products">
-            <img [src]="product.imageUrl" [alt]="product.name">
-            <div class="product-info">
-                <h3>{{ product.name }}</h3>
-                <p class="product-desc">{{ product.description }}</p>
-                <div class="product-bottom">
-                    <span class="price">{{ product.price }} евро</span>
-                    <a [routerLink]="['/details', product.id]" class="details-btn">Детайли</a>
+    @if (isLoading) {
+        <div class="loading">Зареждане на продукти...</div>
+    } @else if (errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+    } @else {
+        <div class="product-grid">
+            @for (product of products; track product._id) {
+                <div class="product-card">
+                    <img [src]="product.imageUrl" [alt]="product.name">
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        <p class="product-desc">{{ product.description }}</p>
+                        <div class="product-bottom">
+                            <span class="price">{{ product.price }} евро</span>
+                            <a [routerLink]="['/details', product._id]" class="btn btn-primary">Детайли</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
-    </div>
+    }
 </section>

@@ -1,4 +1,4 @@
-<section class="details-page">
+<section class="page-container">
     <div class="stars"></div>
 
     @if (product && !isLoading) {
@@ -8,7 +8,7 @@
             </div>
 
             <div class="details-info">
-                <h1>{{ product.name }}</h1>
+                <h1 class="details-title">{{ product.name }}</h1>
                 <p class="details-description">{{ product.description }}</p>
                 
                 <div class="details-content">
@@ -17,31 +17,27 @@
                 </div>
                 
                 <div class="details-price">{{ product.price }} евро</div>
-<div class="details-actions">
 
-    @if (isLoggedIn && !isAdmin) {
-        <button class="details-btn details-btn-primary">Добави в кошницата</button>
-    }
+                <div class="details-actions">
+                    @if (isLoggedIn && !isAdmin) {
+                        <button class="btn btn-primary">Добави в кошницата</button>
+                    }
 
-  
-    @if (isAdmin) {
-        <button class="details-btn details-btn-secondary">Редактирай</button>
-        <button class="details-btn details-btn-danger">Изтрий</button>
-    }
+                    @if (isAdmin) {
+                       <button class="btn btn-primary" [routerLink]="['/edit', product._id]">Редактирай</button>
+                        <button class="btn btn-danger">Изтрий</button>
+                    }
 
-    
-    <a routerLink="/catalog" class="details-btn details-btn-secondary">Обратно към каталога</a>
-</div>
+                    <a routerLink="/catalog" class="btn btn-secondary">Обратно към каталога</a>
+                </div>
             </div>
         </div>
     } @else if (!isLoading && errorMessage) {
         <div class="not-found">
             <h2>{{ errorMessage }}</h2>
-            <a routerLink="/catalog">Обратно към каталога</a>
+            <a routerLink="/catalog" class="btn btn-secondary">Обратно към каталога</a>
         </div>
     } @else if (isLoading) {
-        <div class="loading">
-            <h2>Зареждане...</h2>
-        </div>
+        <div class="loading">Зареждане...</div>
     }
 </section>

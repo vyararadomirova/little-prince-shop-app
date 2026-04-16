@@ -16,9 +16,10 @@ export class CreateComponent {
   product = {
     name: '',
     description: '',
+    content: '',     
     price: null,
     imageUrl: ''
-  };
+};
   error = '';
   loading = false;
 
@@ -49,9 +50,11 @@ export class CreateComponent {
     this.http.post('http://localhost:3030/data/products', this.product, {
       headers: { 'X-Authorization': token }
     }).subscribe({
-      next: () => {
+      next: (response: any) => {
         this.loading = false;
-        this.router.navigate(['/catalog']);
+        const productId = response._id;  
+        console.log('Създаден продукт с ID:', productId);
+        this.router.navigate(['/details', productId]);  
       },
       error: (err) => {
         this.loading = false;

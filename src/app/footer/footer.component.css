@@ -3,7 +3,8 @@
 .footer {
     padding: 40px;
     text-align: center;
-    background: #0a1a2f;
+    background: #051229;
+    border-top: 1px solid rgba(107, 182, 255, 0.2);
     font-size: 13px;
-    color: #9fbce0;
+    color: #8b9dc3;
 }
