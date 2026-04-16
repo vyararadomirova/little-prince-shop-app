@@ -16,11 +16,11 @@
                     <p>{{ product.content }}</p>
                 </div>
                 
-                <div class="details-price">{{ product.price }} евро</div>
+                <div class="details-price">{{ product.price }} €</div>
 
                 <div class="details-actions">
                     @if (isLoggedIn && !isAdmin) {
-                        <button class="btn btn-primary">Добави в кошницата</button>
+                       <button class="btn btn-primary" (click)="addToCart()">Добави в количката</button>
                     }
 
                     @if (isAdmin) {

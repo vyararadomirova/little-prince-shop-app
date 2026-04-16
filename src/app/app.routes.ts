@@ -7,6 +7,7 @@ import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
 import { AdminGuard } from './guards/admin.guard'; 
 import { EditComponent } from './edit/edit.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'create', component: CreateComponent, canActivate: [AdminGuard] },  
   { path: 'edit/:id', component: EditComponent, canActivate: [AdminGuard] },
-  { path: 'details/:id', component: DetailsComponent }
+  { path: 'details/:id', component: DetailsComponent },
+  { path: 'cart', component: CartComponent }
 ];

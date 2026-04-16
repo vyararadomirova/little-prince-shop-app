@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProductService, Product } from '../services/product.service';
 import { AuthService } from '../services/auth.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-details',
@@ -22,6 +23,7 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private authService: AuthService,
+    private cartService: CartService,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
@@ -62,11 +64,16 @@ export class DetailsComponent implements OnInit {
   }
 
   addToCart(): void {
-    console.log('Добавяне в кошницата:', this.product);
+    if (this.product) {
+      this.cartService.addItem(this.product);
+      alert('Продуктът е добавен в количката!');
+    }
   }
 
   editProduct(): void {
-    console.log('Редактиране на продукт:', this.product);
+    if (this.product) {
+      this.router.navigate(['/edit', this.product._id]);
+    }
   }
 
   deleteProduct(): void {

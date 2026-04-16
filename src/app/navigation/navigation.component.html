@@ -1,24 +1,28 @@
 <header class="header">
-    <div class="brand">Little Prince</div>
+  <div class="brand">Little Prince</div>
 
-    <nav class="nav">
-        <a routerLink="/">Начало</a>
-        <a routerLink="/catalog">Магазин</a>
+  <nav class="nav">
+    <a routerLink="/">Начало</a>
+    <a routerLink="/catalog">Магазин</a>
 
-        <a routerLink="/about">За нас</a>
-        <a routerLink="/contacts">Контакти</a>
+    <a routerLink="/about">За нас</a>
+    <a routerLink="/contacts">Контакти</a>
 
-       @if (isAdmin) {
-    <a routerLink="/create">Добави продукт</a>
-}
+    @if (isAdmin) {
+      <a routerLink="/create">Добави продукт</a>
+    }
 
-        @if (!isLoggedIn) {
-            <a routerLink="/login">Вход</a>
-            <a routerLink="/register">Регистрация</a>
-        }
+    @if (isLoggedIn) {
+      <a routerLink="/cart">Количка</a>
+    }
 
-        @if (isLoggedIn) {
-            <a (click)="logout()" style="cursor: pointer;">Изход</a>
-        }
-    </nav>
+    @if (!isLoggedIn) {
+      <a routerLink="/login">Вход</a>
+      <a routerLink="/register">Регистрация</a>
+    }
+
+    @if (isLoggedIn) {
+      <a (click)="logout()" style="cursor: pointer;">Изход</a>
+    }
+  </nav>
 </header>
