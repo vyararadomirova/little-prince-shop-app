@@ -5,16 +5,14 @@
     <a routerLink="/">Начало</a>
     <a routerLink="/catalog">Магазин</a>
 
-    <a routerLink="/about">За нас</a>
-    <a routerLink="/contacts">Контакти</a>
-
     @if (isAdmin) {
       <a routerLink="/create">Добави продукт</a>
     }
 
     @if (isLoggedIn) {
-      <a routerLink="/cart">Количка</a>
-    }
+    <a routerLink="/dashboard">Профил</a>
+    <a routerLink="/cart">Количка</a>
+}
 
     @if (!isLoggedIn) {
       <a routerLink="/login">Вход</a>

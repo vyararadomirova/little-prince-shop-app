@@ -1,0 +1,28 @@
+<section class="form-page">
+    <div class="stars"></div>
+
+    <h1 class="form-title">Моят профил</h1>
+
+    <div class="form-card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <div class="avatar-icon">👤</div>
+            </div>
+            <h2 class="profile-name">{{ user?.username }}</h2>
+            <p class="profile-email">{{ user?.email }}</p>
+        </div>
+
+        <div class="profile-stats">
+            <div class="stat-card">
+                <div class="stat-value">{{ cartCount }}</div>
+                <div class="stat-label">продукта в количката</div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <a routerLink="/catalog" class="btn btn-primary">Към магазина</a>
+            <a routerLink="/cart" class="btn btn-secondary">Количка</a>
+            <button class="btn btn-danger" (click)="logout()">Изход</button>
+        </div>
+    </div>
+</section>
