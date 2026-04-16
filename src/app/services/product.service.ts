@@ -29,4 +29,10 @@ export class ProductService {
   getProductById(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
+
+  deleteProduct(id: string, token: string): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`, {
+    headers: { 'X-Authorization': token }
+  });
+}
 }

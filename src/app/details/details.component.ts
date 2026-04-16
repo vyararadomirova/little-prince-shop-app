@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProductService, Product } from '../services/product.service';
 import { AuthService } from '../services/auth.service';
 
@@ -22,7 +22,8 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +70,28 @@ export class DetailsComponent implements OnInit {
   }
 
   deleteProduct(): void {
-    console.log('Изтриване на продукт:', this.product);
+    if (!confirm('Сигурни ли сте, че искате да изтриете този продукт?')) {
+      return;
+    }
+
+    const token = this.authService.currentUser?.accessToken;
+    const id = this.product?._id;
+
+    if (!token || !id) {
+      console.error('Липсва токен или ID');
+      return;
+    }
+
+    this.productService.deleteProduct(id, token).subscribe({
+      next: () => {
+        console.log('Продуктът е изтрит');
+        this.router.navigate(['/catalog']);
+      },
+      error: (err) => {
+        console.error('Грешка при изтриване:', err);
+        this.errorMessage = 'Неуспешно изтриване на продукт';
+        this.cdr.detectChanges();
+      }
+    });
   }
 }

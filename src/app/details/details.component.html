@@ -25,7 +25,7 @@
 
                     @if (isAdmin) {
                        <button class="btn btn-primary" [routerLink]="['/edit', product._id]">Редактирай</button>
-                        <button class="btn btn-danger">Изтрий</button>
+                        <button class="btn btn-danger" (click)="deleteProduct()">Изтрий</button>
                     }
 
                     <a routerLink="/catalog" class="btn btn-secondary">Обратно към каталога</a>
