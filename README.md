@@ -1,59 +1,113 @@
-# TempProject
+# Little Prince Shop - Functional Guide
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+## 1. Application Purpose
 
-## Development server
+The goal of the application is to provide an online souvenir shop inspired by "The Little Prince". Users can browse products, view details, add items to cart, and administrators can manage the product catalog.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 2. User Roles
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+**Guest (Not Authenticated User)**
+- Can view Home page
+- Can view Catalog
+- Can view Details page
+- Can register or login
 
-## Code scaffolding
+**Authenticated User**
+- Can add products to cart
+- Can manage cart
+- Can view personal dashboard
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Administrator**
+- Can create, edit and delete products
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 3. Public Features
 
-```bash
-ng generate --help
-```
+- Home page
+- Catalog page
+- Details page
+- Login page
+- Registration page
 
-## Building
+---
 
-To build the project run:
+## 4. Authenticated User Features
 
-```bash
-ng build
-```
+- Add to cart
+- View and manage cart
+- View personal dashboard
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**Administrator only:**
+- Create new products
+- Edit own products
+- Delete own products
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 5. Main Application Flow
 
-```bash
-ng test
-```
+1. User opens the Home page.
+2. User navigates to the Catalog page.
+3. User selects an item and opens the Details page.
+4. User logs in or registers.
+5. Authenticated user adds products to cart.
+6. Administrator creates new products.
+7. The new product appears in the Catalog.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 6. Data Structure
 
-```bash
-ng e2e
-```
+**Product Object**
+- `_id` – unique identifier
+- `_ownerId` – ID of the creator
+- `name` – product name
+- `description` – short description
+- `content` – full description
+- `price` – product price
+- `imageUrl` – product image URL
+- `isTop` – featured flag
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**User Object**
+- `_id` – unique identifier
+- `email` – user email
+- `username` – display name
+- `accessToken` – authentication token
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 7. Project Architecture
+
+- components/
+- services/
+- interfaces/
+- guards/
+- pipes/
+
+---
+
+## 8. Technologies Used
+
+- Angular
+- TypeScript
+- RxJS
+- REST API
+- CSS3
+
+---
+
+## 9. How to Run the Project
+
+1. Clone the repository
+2. Install dependencies – `npm install`
+3. Start the backend server – `cd server && node server.js`
+4. Start the application – `ng serve`
+5. Open `http://localhost:4200`
+
+**Test users:**
+- `peter@abv.bg` / `123456` (regular user)
+- `george@abv.bg` / `123456` (regular user)
+- `admin@abv.bg` / `admin` (administrator)

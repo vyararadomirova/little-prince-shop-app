@@ -10,12 +10,13 @@ import { EditComponent } from './edit/edit.component';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+import { GuestGuard } from './guards/guest.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalog', component: CatalogComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
   { path: 'create', component: CreateComponent, canActivate: [AdminGuard] },  
   { path: 'edit/:id', component: EditComponent, canActivate: [AdminGuard] },
   { path: 'details/:id', component: DetailsComponent },
